@@ -3,6 +3,7 @@ from typing import Optional
 from fastapi import FastAPI
 from pydantic import BaseModel
 from fastapi.middleware.cors import CORSMiddleware
+import starlette.responses as _responses
 
 
 
@@ -23,6 +24,12 @@ users=[]
 class User(BaseModel):
     id:int
     username: str
+
+@app.get("/")
+
+async def root():
+
+    return _responses.RedirectResponse("/docs")
 
 
 @app.get("/user", tags=['users'])
